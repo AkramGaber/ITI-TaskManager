@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITI Task Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="light">
+    <dialog id="modal-dialog">
+        <h2 id="modal-title">Welcome to ITI Task manager! 👋</h2>
+        <p class="modal-subtitle">
+            Enter your team members' names separated by a comma "," to get started!
+        </p>
+        <label for="members-input">Team Members</label>
+        <input type="text" id="members-input" class="modal-input" placeholder="e.g. Akram, Ahmed, Farag" autocomplete="off" required>
+        <p id="modal-error" class="modal-error hidden"></p>
+        <button id="modal-submit" class="btn btn-primary">Create Board</button>
+    </dialog>
+    <nav>
+        <h1>ITI Task Manager</h1>
+        <p>Manage Your Team's Tasks with ease</p>
+        <button id="theme-toggle" title="Toggle dark mode">🌙</button>
+    </nav>
+    <main>
+        <div class="container">
+            <div id="backlog-card" class="card">
+                <div class="heading">
+                    <h2 id="backlog-title" class="card-heading">Tasks List</h2>
+                    <span class="task-counter">0</span>
+                </div>
+                <div class="backlog-input-row">
+                    <!-- <label for="tasks-input">Add a Task</label> -->
+                    <input type="text" id="tasks-input" class="backlog-input" placeholder="e.g. HTML structure" autocomplete="off"> 
+                    <button id="task-btn">Add</button>
+                </div>
+                <p class="task-error hidden"></p>
+                <div class="tasks-container">
+
+                </div>
+            </div>
+            <div class="members-container">
+
+            </div>
+        </div>
+        
+
+    </main>
+
+    <script src="app.js" type="module"></script>
+    <script src="modal.js" type="module"></script>
+    <script src="theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,428 @@
+:root {
+    --bg-primary: #f4f5f7;
+    --bg-secondary: #ffffff;
+    --bg-card: #ffffff;
+    --text-primary: #172b4d;
+    --text-secondary: #5e6c84;
+    --accent: #0052cc;
+    --accent-hover: #0065ff;
+    --border: #dfe1e6;
+    --danger: #de350b;
+    --success: #36b37e;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    --transition: 0.2s ease;
+
+    /* Status colors */
+    --status-not-started: #f4f5f7;
+    --status-not-started-border: #dfe1e6;
+    --status-in-progress: #fff7e6;
+    --status-in-progress-border: #f0a500;
+    --status-done: #e3fcef;
+    --status-done-border: #36b37e;
+}
+
+[data-theme="dark"] {
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-card: #21262d;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --accent: #58a6ff;
+    --accent-hover: #79b8ff;
+    --border: #30363d;
+    --danger: #f85149;
+    --success: #3fb950;
+    --shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    
+    /* Status colors */
+    --status-not-started: #21262d;
+    --status-not-started-border: #30363d;
+    --status-in-progress: #2d2200;
+    --status-in-progress-border: #f0a500;
+    --status-done: #0d2b1a;
+    --status-done-border: #3fb950;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    color: var(--text-primary);
+    background: var(--bg-primary);
+    min-height: 100vh;
+}
+
+.hidden {
+    display: none ;
+}
+
+/*Modal*/
+
+#modal-dialog {
+    margin: auto;
+    border: 2px solid var(--border);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    width: min(460px, 90vw);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+}
+
+#modal-dialog::backdrop {
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(50px);
+}
+
+#modal-dialog[open] {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+#modal-title {
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+.modal-subtitle {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+#modal-dialog label {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+#members-input {
+    padding: 10px 14px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    font-size: 14px;
+    outline: none;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    transition: border-color var(--transition);
+}
+
+#members-input:focus {
+    border-color: var(--accent);
+}
+
+#modal-error {
+    color: var(--danger);
+    font-size: 0.85rem;
+    min-height: 1.2em;
+}
+
+#modal-submit {
+    padding: 10px 20px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--transition), transform var(--transition);
+    margin-top: 0.5rem;
+}
+
+#modal-submit:hover {
+    background: var(--accent-hover);
+    transform: scale(1.02);
+}
+
+/*Nav*/
+
+nav {
+    position: relative;
+    width: 100%;
+    padding: 18px 24px;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+nav h1 {
+    font-size: 1.3rem;
+    padding: 0;
+}
+
+nav p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+#theme-toggle {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background var(--transition), transform var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#theme-toggle:hover {
+    background: var(--accent);
+    transform: translateY(-50%) scale(1.1);
+}
+
+/*Layout Cards container*/
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 2rem;
+    width: 100%;
+}
+
+#backlog-card {
+    width: 260px;
+    flex-shrink: 0;
+}
+
+.members-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    flex: 1;
+}
+
+.empty-state {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 16px 8px;
+    border: 2px dashed var(--border);
+    border-radius: 8px;
+    margin-top: 4px;
+}
+
+/*Cards*/
+
+.card {
+    background: var(--bg-card);
+    border-radius: 14px;
+    border: 2px solid var(--border);
+    padding: 16px;
+    transition: box-shadow var(--transition), border-color var(--transition);
+    min-width: 220px;
+}
+
+.member-card {
+    flex: 1;
+    min-width: 200px;
+    max-width: 300px;
+}
+
+.card:hover {
+    box-shadow: var(--shadow);
+}
+
+/* Drag-over highlight */
+.card.drag-over {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 8%, var(--bg-card));
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+.heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.card-heading {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.task-counter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+/*Backlog*/
+
+.backlog-input-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+#backlog-card .heading {
+    margin-bottom: 12px;
+}
+
+#backlog-card .backlog-input-row {
+    margin-bottom: 8px;
+}
+
+#tasks-input {
+    flex: 1;
+    padding: 7px 7px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    font-size: 13px;
+    outline: none;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    transition: border-color var(--transition);
+}
+
+#tasks-input:focus {
+    border-color: var(--accent);
+}
+
+#task-btn {
+    padding: 5px 14px;
+    border: none;
+    border-radius: 8px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--transition);
+}
+
+#task-btn:hover {
+    background: var(--accent-hover);
+}
+
+.task-error {
+    color: var(--danger);
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+}
+
+/*Tasks*/
+
+.tasks-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 40px;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 2px solid var(--status-not-started-border);
+    background: var(--status-not-started);
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    cursor: grab;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.task:active {
+    cursor: grabbing;
+}
+
+.task:hover {
+    transform: scale(1.01);
+    box-shadow: var(--shadow);
+}
+
+.task-text {
+    flex: 1;
+    word-break: break-word;
+}
+
+/* Status colors */
+.task[data-status="not-started"] {
+    background: var(--status-not-started);
+    border-color: var(--status-not-started-border);
+}
+
+.task[data-status="in-progress"] {
+    background: var(--status-in-progress);
+    border-color: var(--status-in-progress-border);
+}
+
+.task[data-status="done"] {
+    background: var(--status-done);
+    border-color: var(--status-done-border);
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+/* Status select */
+.task-status {
+    padding: 3px 6px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.75rem;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    cursor: pointer;
+    outline: none;
+    flex-shrink: 0;
+}
+
+/* Delete button */
+.delete-task {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    padding: 3px 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    line-height: 1;
+    flex-shrink: 0;
+    transition: background var(--transition), color var(--transition);
+}
+
+.delete-task:hover {
+    background: var(--danger);
+    color: #fff;
+}
+
+/* Drag ghost */
+.is-dragging {
+    opacity: 0.4;
+    transform: scale(1.03);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
