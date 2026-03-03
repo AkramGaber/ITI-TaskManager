@@ -155,3 +155,6 @@ if(uniqueMembers.length !== members.length){
 
 *Feel free to explore, learn from, and provide feedback on this project!*
 **You can check a live demo here, and try it yourself** *https://iti-taskmanager.netlify.app/*
+
+![Image](https://github.com/user-attachments/assets/fbc630d4-fd95-4c9a-90c6-2d73570c776c)
+
